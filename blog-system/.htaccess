@@ -1,0 +1,76 @@
+# PHP dosyalarının CSS olarak sunulmasını sağla
+AddType text/css .php
+
+# Önbelleği devre dışı bırak
+<IfModule mod_expires.c>
+    ExpiresActive Off
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+</IfModule>
+
+# CORS ayarları
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+# Gzip sıkıştırma
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# PHP ayarları
+<IfModule mod_php.c>
+    php_flag display_errors on
+    php_value error_reporting E_ALL
+</IfModule>
+
+# Temel ayarlar
+Options -Indexes +FollowSymLinks
+DirectoryIndex index.php
+
+# Mod rewrite kuralları
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /blog-system/
+    
+    # Dosya veya dizin kontrolü
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Ana sayfaya yönlendir
+    RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>
+
+# PHP hata gösterimi
+php_flag display_errors on
+php_value error_reporting E_ALL
+
+# Karakter seti
+AddDefaultCharset UTF-8
+
+# PHP dosya işleme
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# Güvenlik başlıkları
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:;"
+</IfModule>
+
+# Dizin listelemeyi kapat
+Options -Indexes
+
+# CSS dosyaları için yönlendirme
+RewriteRule ^assets/css/style\.css$ assets/css/style.php [L] 

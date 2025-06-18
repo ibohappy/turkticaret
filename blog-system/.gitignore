@@ -1,0 +1,55 @@
+# PHP
+*.log
+*.tmp
+*.cache
+
+# Veritabanı yapılandırması (güvenlik için)
+config/database.php
+
+# Yüklenen dosyalar
+assets/images/*
+!assets/images/.gitkeep
+!assets/images/sample-*
+
+# IDE/Editor dosyaları
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistem dosyaları
+.DS_Store
+Thumbs.db
+
+# Composer (eğer kullanılırsa)
+vendor/
+composer.lock
+
+# Node modules (eğer kullanılırsa)
+node_modules/
+package-lock.json
+
+# Test dosyaları
+test.php
+debug.php
+phpinfo.php
+
+# Backup dosyaları
+*.bak
+*.backup
+*.sql.gz
+
+# Temporary files
+tmp/
+temp/
+cache/
+
+# Admin şifre oluşturma dosyaları (güvenlik)
+generate_admin_password.php
+admin_password.php
+fix_password.php
+unlock_admin.php
+
+# Development tools
+css-test.php 

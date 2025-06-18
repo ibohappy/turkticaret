@@ -1,0 +1,25 @@
+# CSS dosyaları için önbellek kontrolü
+<IfModule mod_headers.c>
+    # Tüm CSS dosyaları için CORS'u etkinleştir
+    Header set Access-Control-Allow-Origin "*"
+    
+    # PHP dosyaları için önbellek kontrolü
+    <FilesMatch "\.(php)$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Sat, 26 Jul 1997 05:00:00 GMT"
+    </FilesMatch>
+    
+    # CSS dosyaları için önbellek kontrolü
+    <FilesMatch "\.(css)$">
+        Header set Cache-Control "public, max-age=0"
+    </FilesMatch>
+</IfModule>
+
+# PHP dosyalarının çalıştırılmasına izin ver
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# Dizin listelemeyi kapat
+Options -Indexes 

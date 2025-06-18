@@ -1,0 +1,302 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* Genel stil ayarları - Profesyonel Beyaz-Yeşil Tema */
+:root {
+    /* Ana Renkler */
+    --primary-green: #059669;
+    --secondary-green: #10b981;
+    --light-green: #d1fae5;
+    --dark-green: #047857;
+    --white: #ffffff;
+    --light-gray: #f8fafc;
+    --dark-gray: #1f2937;
+    
+    /* Gradyanlar */
+    --primary-gradient: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+    --hero-gradient: linear-gradient(to right, var(--white) 0%, var(--light-green) 100%);
+    --card-hover-shadow: 0 15px 35px rgba(5, 150, 105, 0.1), 0 5px 15px rgba(16, 185, 129, 0.07);
+}
+
+/* Temel Stiller */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--dark-gray);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.5;
+}
+
+/* Hero Section */
+.hero-section {
+    background: var(--light-gray);
+    color: var(--dark-gray);
+    padding: 80px 0 60px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(5, 150, 105, 0.1);
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--hero-gradient);
+    opacity: 0.8;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    color: var(--primary-green);
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.025em;
+}
+
+.hero-content .lead {
+    color: var(--dark-gray);
+    font-size: 1.25rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* Kartlar */
+.article-card {
+    background: var(--white);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 1px solid rgba(5, 150, 105, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+/* Butonlar */
+.btn-primary {
+    background: var(--primary-green);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--dark-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+}
+
+/* Footer */
+footer {
+    background: var(--light-gray);
+    border-top: 1px solid rgba(5, 150, 105, 0.1);
+    padding: 3rem 0;
+    margin-top: 4rem;
+    color: var(--dark-gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .search-section {
+        margin: -2rem 1rem 2rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content, .search-section, .article-card {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Kategori Kartları */
+.categories-wrapper {
+    background: var(--white);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.categories-title {
+    color: var(--dark-gray);
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.category-card {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: var(--white);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--dark-gray);
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--category-color, var(--primary-green));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.category-card:hover::before {
+    opacity: 1;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-hover-shadow);
+    border-color: var(--category-color, var(--primary-green));
+}
+
+.category-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--light-gray);
+    border-radius: 0.5rem;
+    margin-right: 1rem;
+    color: var(--category-color, var(--primary-green));
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+    background: var(--category-color, var(--primary-green));
+    color: var(--white);
+}
+
+.category-info {
+    flex: 1;
+}
+
+.category-name {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--dark-gray);
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.category-count {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--category-color, var(--primary-green));
+    background: var(--light-gray);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-weight: 500;
+}
+
+.category-card.active {
+    background: var(--category-color, var(--primary-green));
+    color: var(--white);
+    border-color: transparent;
+}
+
+.category-card.active::before {
+    opacity: 0;
+}
+
+.category-card.active .category-icon {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+}
+
+.category-card.active .category-name {
+    color: var(--white);
+}
+
+.category-card.active .category-count {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+}
+
+/* Responsive Ayarlar */
+@media (max-width: 768px) {
+    .categories-wrapper {
+        padding: 1rem;
+    }
+    
+    .categories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.75rem;
+    }
+    
+    .category-card {
+        padding: 0.75rem;
+    }
+    
+    .category-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+        margin-right: 0.75rem;
+    }
+    
+    .category-name {
+        font-size: 0.875rem;
+    }
+    
+    .category-count {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .categories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 0.5rem;
+    }
+} 
